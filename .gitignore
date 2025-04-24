@@ -1,0 +1,6 @@
+# Python bytecode
+__pycache__/
+
+# Base de datos temporal / persistencia local
+storage/task.json  # Ignora el task.json en storage (MVC)
+tasks.json         # Ignora el task.json en la raíz (Monolítico)
