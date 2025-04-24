@@ -8,5 +8,10 @@
         "title": "Estudio",
         "description": "Estudiar para la prueba de Arquitectura de Sistemas ",
         "completed": false
+    },
+    {
+        "title": "Comer",
+        "description": "Hacer almuerzo para hoy",
+        "completed": false
     }
 ]

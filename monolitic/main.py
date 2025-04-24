@@ -10,6 +10,7 @@ class Task:
         self.description = description
         self.completed = completed
 
+    # Convertir la tarea a diccionario para guardar en JSON
     def to_dict(self):
         return {
             "title": self.title,
@@ -17,17 +18,18 @@ class Task:
             "completed": self.completed
         }
 
+    # Crear una tarea a partir de un diccionario (desde JSON)
     @staticmethod
     def from_dict(data):
         return Task(data["title"], data["description"], data["completed"])
 
 # ------------------------------
-# Gestor de tareas
+# Gestor de tareas: maneja lógica y almacenamiento
 # ------------------------------
 class TaskManager:
     def __init__(self, filepath="tasks.json"):
         self.filepath = filepath
-        self.tasks = self.load_tasks()
+        self.tasks = self.load_tasks()  # Cargar tareas desde archivo al iniciar
 
     def load_tasks(self):
         if os.path.exists(self.filepath):
@@ -42,12 +44,14 @@ class TaskManager:
     def add_task(self, title, description):
         task = Task(title, description)
         self.tasks.append(task)
+        self.save_tasks()  # Guardar cada vez que se agrega una tarea
         print("✅ Tarea agregada.")
 
     def list_tasks(self):
         if not self.tasks:
             print("No hay tareas.")
             return
+        print("\nLista de tareas:")
         for i, task in enumerate(self.tasks, start=1):
             status = "✅" if task.completed else "❌"
             print(f"{i}. [{status}] {task.title} - {task.description}")
@@ -55,6 +59,7 @@ class TaskManager:
     def complete_task(self, index):
         if 0 <= index < len(self.tasks):
             self.tasks[index].completed = True
+            self.save_tasks()  # Guardar cada vez que se completa una tarea
             print("Tarea marcada como completada.")
         else:
             print("❌ Índice inválido.")
@@ -62,12 +67,13 @@ class TaskManager:
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
             removed = self.tasks.pop(index)
+            self.save_tasks()  # Guardar cada vez que se elimina una tarea
             print(f"Tarea '{removed.title}' eliminada.")
         else:
             print("❌ Índice inválido.")
 
 # ------------------------------
-# Aplicación CLI
+# Aplicación CLI: interacción con el usuario
 # ------------------------------
 class App:
     def __init__(self):
@@ -104,14 +110,13 @@ class App:
                 except ValueError:
                     print("❌ Entrada inválida.")
             elif choice == "5":
-                self.manager.save_tasks()
                 print("👋 ¡Hasta luego!")
                 break
             else:
                 print("❌ Opción inválida.")
 
 # ------------------------------
-# Punto de entrada
+# Punto de entrada de la aplicación
 # ------------------------------
 if __name__ == "__main__":
     app = App()
