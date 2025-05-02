@@ -1,0 +1,49 @@
+@startuml
+!include plantuml_lib/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+package "Models" {
+  class Task {
+    +title: str
+    +description: str
+    +completed: bool
+    +to_dict()
+    +from_dict(data)
+    +mark_done()
+  }
+}
+
+package "Storage" {
+  class TaskRepo {
+    +load_tasks()
+    +save_tasks(tasks)
+  }
+
+  TaskRepo --> Task : transforma
+}
+
+package "View" {
+  class TaskView {
+    +show_menu()
+    +get_input(prompt)
+    +show_tasks(tasks)
+    +show_message(message)
+  }
+}
+
+package "Controller" {
+  class TaskController {
+    +run()
+    +add_task()
+    +list_tasks()
+    +complete_task()
+    +remove_task()
+  }
+}
+
+TaskController --> TaskView
+TaskController --> TaskRepo
+TaskController --> Task
+
+@enduml
