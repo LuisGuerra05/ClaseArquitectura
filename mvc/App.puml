@@ -1,0 +1,49 @@
+@startuml
+actor Usuario
+
+Usuario -> TaskController : ejecuta run()
+
+loop Bucle principal
+    TaskController -> TaskView : show_menu()
+    TaskView -> Usuario : muestra opciones
+    Usuario -> TaskView : elige opción
+    TaskView -> TaskController : opción seleccionada
+
+    alt Ver tareas
+        TaskController -> TaskView : show_tasks(tasks)
+    else Agregar tarea
+        TaskController -> TaskView : get_input("Título")
+        Usuario -> TaskView : escribe título
+        TaskView -> TaskController : devuelve título
+
+        TaskController -> TaskView : get_input("Descripción")
+        Usuario -> TaskView : escribe descripción
+        TaskView -> TaskController : devuelve descripción
+
+        TaskController -> Task : instancia nueva tarea
+        TaskController -> TaskRepo : load_tasks()
+        TaskRepo -> Task : from_dict()
+        TaskController -> TaskRepo : save_tasks()
+        TaskRepo -> Task : to_dict()
+        TaskController -> TaskView : show_message("Tarea agregada.")
+    else Marcar como completada / Eliminar tarea
+        TaskController -> TaskView : get_input("Número de tarea")
+        Usuario -> TaskView : escribe número
+        TaskView -> TaskController : devuelve índice
+
+        TaskController -> Task : modificar/completar/eliminar
+        TaskController -> TaskRepo : save_tasks()
+        TaskRepo -> Task : to_dict()
+        TaskController -> TaskView : show_message()
+    end
+end
+
+note right of TaskController
+  Toda la lógica de la app está centralizada
+  en TaskController, que:
+  - Muestra el menú
+  - Interactúa con TaskView
+  - Crea, modifica y elimina instancias de Task
+  - Guarda y carga usando TaskRepo
+end note
+@enduml
