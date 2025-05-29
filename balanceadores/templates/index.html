@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor de Tareas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: {{ 'lightblue' if port == '5001' else 'lightpink' }};
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+
+    form {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 15px 20px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      border-radius: 0 8px 8px 0;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    li {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .task-title {
+      flex: 1;
+      margin-right: 10px;
+      font-size: 1.1em;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .actions a {
+      padding: 8px 12px;
+      margin-left: 5px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: white;
+      font-size: 0.9em;
+      transition: background-color 0.2s;
+    }
+
+    .complete-btn {
+      background-color: #007bff;
+    }
+
+    .complete-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    .server-info {
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95em;
+      color: #444;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Gestor de Tareas</h1>
+
+  <form action="/tasks/add" method="post">
+    <input type="text" name="description" placeholder="Ingrese una nueva tarea" required />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <ul>
+    {% if tasks %}
+      {% for task in tasks %}
+        <li>
+          <span class="task-title {% if task.done %}completed{% endif %}">
+            {{ task.description }}
+          </span>
+          <div class="actions">
+            {% if not task.done %}
+              <a href="/tasks/{{ task.id }}/complete" class="complete-btn">Completar</a>
+            {% endif %}
+            <a href="/tasks/{{ task.id }}/delete" class="delete-btn">Eliminar</a>
+          </div>
+        </li>
+      {% endfor %}
+    {% else %}
+      <li style="text-align:center;">No hay tareas para mostrar.</li>
+    {% endif %}
+  </ul>
+
+  <div class="server-info">
+    <strong>Servidor atendiendo esta solicitud:</strong> Puerto {{ port }}
+  </div>
+</body>
+</html>
