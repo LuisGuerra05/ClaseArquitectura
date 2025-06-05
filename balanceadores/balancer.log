@@ -192,3 +192,50 @@
 2025-05-29 09:50:57,203 - INFO - 127.0.0.1 - - [29/May/2025 09:50:57] "GET /status HTTP/1.1" 200 -
 2025-05-29 09:50:58,358 - INFO - 127.0.0.1 - - [29/May/2025 09:50:58] "GET /info HTTP/1.1" 200 -
 2025-05-29 09:51:02,224 - INFO - 127.0.0.1 - - [29/May/2025 09:51:02] "GET /status HTTP/1.1" 200 -
+2025-05-29 09:51:02,850 - INFO - 127.0.0.1 - - [29/May/2025 09:51:02] "GET /info HTTP/1.1" 200 -
+2025-06-05 09:22:43,878 - INFO - Verificando servidores al inicio...
+2025-06-05 09:22:47,963 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-05 09:22:47,963 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-05 09:22:48,006 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://10.53.172.52:8080
+2025-06-05 09:22:48,007 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 09:23:43,807 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:43] "GET / HTTP/1.1" 200 -
+2025-06-05 09:23:43,916 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:43] "GET /static/style.css HTTP/1.1" 200 -
+2025-06-05 09:23:45,995 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-05 09:23:49,660 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:49] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:23:54,719 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:54] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:23:59,755 - INFO - 127.0.0.1 - - [05/Jun/2025 09:23:59] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:04,799 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:04] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:09,846 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:09] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:14,879 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:14] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:19,935 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:19] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:24,960 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:24] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:30,000 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:30] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:35,035 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:35] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:40,061 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:40] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:45,103 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:45] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:50,137 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:50] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:24:55,180 - INFO - 127.0.0.1 - - [05/Jun/2025 09:24:55] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:00,210 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:00] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:05,252 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:05] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:10,290 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:10] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:15,322 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:15] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:20,363 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:20] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:25,390 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:25] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:30,410 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:30] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:34,755 - WARNING - Error en health check para http://localhost:5001: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001E3067794C0>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-05 09:25:35,447 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:35] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:40,484 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:40] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:45,515 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:45] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:50,541 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:50] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:25:55,572 - INFO - 127.0.0.1 - - [05/Jun/2025 09:25:55] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:00,593 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:00] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:05,633 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:05] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:10,666 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:10] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:15,705 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:15] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:20,739 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:20] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:25,771 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:25] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:30,800 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:30] "GET /status HTTP/1.1" 200 -
+2025-06-05 09:26:35,827 - INFO - 127.0.0.1 - - [05/Jun/2025 09:26:35] "GET /status HTTP/1.1" 200 -
