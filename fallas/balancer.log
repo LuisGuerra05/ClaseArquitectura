@@ -449,3 +449,44 @@
 2025-06-05 09:44:27,719 - INFO - 127.0.0.1 - - [05/Jun/2025 09:44:27] "GET / HTTP/1.1" 200 -
 2025-06-05 09:44:27,856 - INFO - 127.0.0.1 - - [05/Jun/2025 09:44:27] "GET /static/style.css HTTP/1.1" 200 -
 2025-06-05 09:44:40,412 - INFO - 127.0.0.1 - - [05/Jun/2025 09:44:40] "GET /status HTTP/1.1" 200 -
+2025-06-05 10:43:50,594 - INFO - Verificando servidores al inicio...
+2025-06-05 10:43:54,627 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-05 10:43:54,628 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-05 10:43:54,673 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://10.53.172.52:8080
+2025-06-05 10:43:54,673 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 10:45:36,962 - INFO - 127.0.0.1 - - [05/Jun/2025 10:45:36] "[31m[1mPOST /api/tasks HTTP/1.1[0m" 400 -
+2025-06-05 10:45:41,026 - INFO - 127.0.0.1 - - [05/Jun/2025 10:45:41] "[33mDELETE /api/tasks/999 HTTP/1.1[0m" 404 -
+2025-06-05 10:45:45,148 - INFO - 127.0.0.1 - - [05/Jun/2025 10:45:45] "[35m[1mGET /error500 HTTP/1.1[0m" 500 -
+2025-06-05 10:46:43,254 - INFO - Verificando servidores al inicio...
+2025-06-05 10:46:47,284 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-05 10:46:47,285 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-05 10:46:47,316 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://10.53.172.52:8080
+2025-06-05 10:46:47,317 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 10:47:31,951 - INFO - 127.0.0.1 - - [05/Jun/2025 10:47:31] "GET /errors/stats HTTP/1.1" 200 -
+2025-06-05 10:47:34,102 - INFO - 127.0.0.1 - - [05/Jun/2025 10:47:34] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-05 10:52:31,677 - INFO - Verificando servidores al inicio...
+2025-06-05 10:52:33,707 - INFO - [OK] Servidor http://localhost:5001 activo
+2025-06-05 10:52:35,736 - INFO - [OK] Servidor http://localhost:5002 activo
+2025-06-05 10:52:35,736 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-05 10:52:35,736 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-05 10:52:35,776 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://10.53.172.52:8080
+2025-06-05 10:52:35,776 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 10:54:00,153 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/
+2025-06-05 10:54:00,153 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:00] "GET / HTTP/1.1" 200 -
+2025-06-05 10:54:00,293 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:00] "GET /static/style.css HTTP/1.1" 200 -
+2025-06-05 10:54:10,311 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/errors/stats
+2025-06-05 10:54:10,312 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:10] "GET /errors/stats HTTP/1.1" 200 -
+2025-06-05 10:54:29,748 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks
+2025-06-05 10:54:29,748 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:29] "[31m[1mPOST /api/tasks HTTP/1.1[0m" 400 -
+2025-06-05 10:54:33,829 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks/999
+2025-06-05 10:54:33,830 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:33] "[33mDELETE /api/tasks/999 HTTP/1.1[0m" 404 -
+2025-06-05 10:54:37,912 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/error500

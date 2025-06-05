@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor de Tareas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% if port == '5001' %}azul{% elif port == '5002' %}rojo{% else %}rosado{% endif %}">
+  <h1>Gestor de Tareas</h1>
+
+  <form action="/tasks/add" method="post">
+    <input type="text" name="title" placeholder="Ingrese una nueva tarea" required />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <ul>
+    {% if tasks %}
+      {% for task in tasks %}
+        <li>
+          <span class="task-title {% if task.completed %}completed{% endif %}">
+            {{ task.title }}
+          </span>
+          <div class="actions">
+            {% if not task.completed %}
+              <form action="/tasks/{{ loop.index0 }}/complete" method="post" style="display:inline;">
+                <button class="complete-btn">Completar</button>
+              </form>
+            {% endif %}
+            <form action="/tasks/{{ loop.index0 }}/delete" method="post" style="display:inline;">
+              <button class="delete-btn">Eliminar</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
+    {% else %}
+      <li style="text-align:center;">No hay tareas para mostrar.</li>
+    {% endif %}
+  </ul>
+
+  <div class="server-info">
+    <strong>Servidor atendiendo esta solicitud:</strong> Puerto {{ port }}
+  </div>
+
+  <div style="margin-top: 30px;">
+    <a href="/errors/stats" target="_blank" style="
+      background-color: #343a40;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95em;
+    ">
+      Ver estadísticas de errores
+    </a>
+  </div>
+</body>
+</html>
