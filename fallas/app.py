@@ -5,62 +5,60 @@ Este archivo implementa una API web para gestionar tareas usando Flask
 import json
 import os
 import sys
-import requests
 from datetime import datetime
-from collections import defaultdict, deque
 from flask import Flask, jsonify, request, render_template, redirect, url_for
+from collections import defaultdict
 
-# Ruta del archivo de tareas
+# ----------------------------
+# Configuración inicial
+# ----------------------------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), 'tasks.json')
-
 app = Flask(__name__)
 
 # ----------------------------
 # Sistema de monitoreo de errores
 # ----------------------------
 error_stats = defaultdict(int)
-error_log = deque(maxlen=100)
+error_log = []
 
-@app.errorhandler(400)
-def bad_request(e):
-    error_stats['400_BAD_REQUEST'] += 1
-    error_log.append(f"400 - BAD REQUEST - {request.path}")
-    return jsonify({"error": "Solicitud inválida"}), 400
-
-@app.errorhandler(404)
-def not_found(e):
-    error_stats['404_NOT_FOUND'] += 1
-    error_log.append(f"404 - NOT FOUND - {request.path}")
-    return jsonify({"error": "Recurso no encontrado"}), 404
-
-@app.errorhandler(500)
-def internal_error(e):
-    error_stats['500_INTERNAL_ERROR'] += 1
-    error_log.append(f"500 - INTERNAL SERVER ERROR - {request.path}")
-    return jsonify({"error": "Error interno del servidor"}), 500
+def log_error(error_type, error_message, endpoint):
+    """Registra errores para monitoreo"""
+    error_stats[error_type] += 1
+    error_entry = {
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'type': error_type,
+        'message': error_message,
+        'endpoint': endpoint
+    }
+    error_log.append(error_entry)
+    print(f"🚨 ERROR DETECTADO: {error_type} en {endpoint} - {error_message}")
 
 @app.route('/errors/stats')
 def error_stats_view():
+    """Devuelve estadísticas de errores recientes"""
     return jsonify({
         'total_errors': sum(error_stats.values()),
         'error_types': dict(error_stats),
-        'recent_errors': list(error_log)[-10:]
+        'recent_errors': error_log[-10:]
     })
 
-@app.route('/error500')
-def trigger_error():
-    return 1 / 0  # Para probar error 500
+# ----------------------------
+# Logging de eventos (a consola o servicio externo)
+# ----------------------------
+def log_event(message):
+    """Registra eventos importantes"""
+    try:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        log_message = f"[{timestamp}] {message}"
+        print(f"📝 LOG: {log_message}")
+        with open("app_logs.txt", "a") as f:
+            f.write(log_message + "\n")
+    except Exception as e:
+        log_error("500_INTERNAL_ERROR", f"Error en sistema de logging: {str(e)}", "log_event")
 
 # ----------------------------
 # Funciones de negocio
 # ----------------------------
-
-def log_event(message):
-    try:
-        requests.post("http://localhost:5003/log", json={"message": message}, timeout=1)
-    except:
-        pass
-
 def load_tasks():
     if not os.path.exists(TASKS_FILE):
         return []
@@ -81,12 +79,12 @@ def save_tasks(tasks):
 # ----------------------------
 # Rutas principales
 # ----------------------------
-
 @app.route('/')
 def index():
     tasks = load_tasks()
-    port = request.host.split(':')[1]
+    port = request.host.split(':')[1]  # <--- Esto da el puerto como string
     return render_template('index.html', tasks=tasks, port=port)
+
 
 @app.route('/info')
 def server_info():
@@ -99,8 +97,9 @@ def server_info():
 def health_check():
     return jsonify({"status": "ok"}), 200
 
+# ----------------------------
 # API REST
-
+# ----------------------------
 @app.route('/api/tasks', methods=['GET'])
 def get_tasks():
     return jsonify(load_tasks())
@@ -108,8 +107,14 @@ def get_tasks():
 @app.route('/api/tasks', methods=['POST'])
 def add_task():
     data = request.json
-    if not data or 'title' not in data:
+    if not data:
+        log_error("400_BAD_REQUEST", "JSON vacío o malformado", "/api/tasks")
+        return jsonify({"error": "Se requiere JSON válido"}), 400
+
+    if 'title' not in data or not data['title'].strip():
+        log_error("400_BAD_REQUEST", "Título faltante o vacío", "/api/tasks")
         return jsonify({"error": "El título de la tarea es requerido"}), 400
+
     tasks = load_tasks()
     new_task = {'title': data['title'], 'completed': False}
     tasks.append(new_task)
@@ -125,6 +130,7 @@ def complete_task(task_id):
         save_tasks(tasks)
         log_event(f"API: Tarea completada: {tasks[task_id]['title']}")
         return jsonify(tasks[task_id])
+    log_error("404_NOT_FOUND", f"Tarea con ID {task_id} no encontrada", "/api/tasks/complete")
     return jsonify({"error": "Tarea no encontrada"}), 404
 
 @app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
@@ -135,10 +141,24 @@ def delete_task(task_id):
         save_tasks(tasks)
         log_event(f"API: Tarea eliminada: {deleted['title']}")
         return jsonify(deleted)
+    log_error("404_NOT_FOUND", f"Tarea con ID {task_id} no encontrada", "/api/tasks/delete")
     return jsonify({"error": "Tarea no encontrada"}), 404
 
-# Web UI
+@app.route('/api/tasks/simulate-error', methods=['POST'])
+def simulate_error():
+    try:
+        result = 1 / 0
+        return jsonify({"result": result})
+    except ZeroDivisionError:
+        log_error("500_INTERNAL_ERROR", "División por cero en simulación", "/api/tasks/simulate-error")
+        return jsonify({"error": "Error interno del servidor - División por cero"}), 500
+    except Exception as e:
+        log_error("500_INTERNAL_ERROR", f"Error inesperado: {str(e)}", "/api/tasks/simulate-error")
+        return jsonify({"error": "Error interno del servidor"}), 500
 
+# ----------------------------
+# Rutas Web
+# ----------------------------
 @app.route('/tasks/add', methods=['POST'])
 def web_add_task():
     title = request.form.get('title')
@@ -169,7 +189,8 @@ def web_delete_task(task_id):
     return redirect(url_for('index'))
 
 # ----------------------------
-
+# Main
+# ----------------------------
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 5000
     print(f"Servidor iniciado en puerto: {port}")

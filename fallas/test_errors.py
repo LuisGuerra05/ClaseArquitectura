@@ -1,17 +1,88 @@
 import requests
+import json
+import time
 
-base_url = "http://localhost:8080"
+BASE_URL = "http://localhost:8080"
 
-print("Iniciando pruebas de errores...\n")
 
-# Error 400: POST sin 'title'
-r1 = requests.post(f"{base_url}/api/tasks", json={})
-print("400 response:", r1.status_code)
+def print_separator(title):
+    print("=" * 50)
+    print(f"🧪 {title}")
+    print("=" * 50)
 
-# Error 404: tarea inexistente
-r2 = requests.delete(f"{base_url}/api/tasks/999")
-print("404 response:", r2.status_code)
 
-# Error 500: división por cero
-r3 = requests.get(f"{base_url}/error500")
-print("500 response:", r3.status_code)
+def test_404_error():
+    """Prueba error 404 - Tarea no encontrada"""
+    print("\n1️⃣ GENERANDO ERROR 404 - Recurso No Encontrado")
+    response = requests.put(f"{BASE_URL}/api/tasks/999/complete")
+    print(f"   Status: {response.status_code}")
+    print(f"   Response: {response.json()}")
+    return response.status_code == 404
+
+
+def test_400_error():
+    """Prueba error 400 - JSON malformado"""
+    print("\n2️⃣ GENERANDO ERROR 400 - Solicitud Malformada")
+
+    # JSON vacío
+    response = requests.post(f"{BASE_URL}/api/tasks", json={})
+    print(f"   Status: {response.status_code}")
+    print(f"   Response: {response.json()}")
+    return response.status_code == 400
+
+
+def test_500_error():
+    """Prueba error 500 - Error interno del servidor"""
+    print("\n3️⃣ GENERANDO ERROR 500 - Error Interno del Servidor")
+    response = requests.post(f"{BASE_URL}/api/tasks/simulate-error")
+    print(f"   Status: {response.status_code}")
+    print(f"   Response: {response.json()}")
+    return response.status_code == 500
+
+
+def check_error_stats():
+    """Ver estadísticas de errores"""
+    print("\n📊 ESTADÍSTICAS DE ERRORES:")
+    response = requests.get(f"{BASE_URL}/errors/stats")
+    if response.status_code == 200:
+        stats = response.json()
+        print(f"   Total errores: {stats['total_errors']}")
+        print(f"   Tipos de errores: {stats['error_types']}")
+        print("\n   Errores recientes:")
+        for error in stats['recent_errors'][-3:]:
+            print(f"     • {error['timestamp']}: {error['type']}")
+            print(f"       {error['message']} ({error['endpoint']})")
+    return stats
+
+
+def main():
+    print_separator("DEMOSTRACIÓN DE DETECCIÓN DE ERRORES")
+
+    # Ejecutar todas las pruebas
+    errors_generated = []
+
+    if test_404_error():
+        errors_generated.append("404")
+
+    if test_400_error():
+        errors_generated.append("400")
+
+    if test_500_error():
+        errors_generated.append("500")
+
+    time.sleep(1)  # Esperar a que se registren los errores
+
+    # Mostrar estadísticas finales
+    print_separator("RESULTADOS")
+    stats = check_error_stats()
+
+    print(f"\n✅ ERRORES GENERADOS: {', '.join(errors_generated)}")
+    print(f"🎯 TOTAL DETECTADOS: {stats['total_errors']}")
+
+    print_separator("DASHBOARD")
+    print(f"🌐 Dashboard: {BASE_URL}/errors/dashboard")
+    print(f"📊 API JSON: {BASE_URL}/errors/stats")
+
+
+if __name__ == "__main__":
+    main()

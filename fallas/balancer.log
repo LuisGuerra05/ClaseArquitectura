@@ -490,3 +490,94 @@
 2025-06-05 10:54:33,829 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks/999
 2025-06-05 10:54:33,830 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:33] "[33mDELETE /api/tasks/999 HTTP/1.1[0m" 404 -
 2025-06-05 10:54:37,912 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/error500
+2025-06-05 10:54:37,912 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:37] "[35m[1mGET /error500 HTTP/1.1[0m" 500 -
+2025-06-05 10:54:44,306 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/errors/stats
+2025-06-05 10:54:44,307 - INFO - 127.0.0.1 - - [05/Jun/2025 10:54:44] "GET /errors/stats HTTP/1.1" 200 -
+2025-06-05 18:55:39,214 - INFO - Verificando servidores al inicio...
+2025-06-05 18:55:41,412 - INFO - [OK] Servidor http://localhost:5001 activo
+2025-06-05 18:55:43,452 - INFO - [OK] Servidor http://localhost:5002 activo
+2025-06-05 18:55:43,455 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-05 18:55:43,455 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-05 18:55:43,497 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.102:8080
+2025-06-05 18:55:43,498 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 18:56:05,453 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks
+2025-06-05 18:56:05,453 - INFO - 127.0.0.1 - - [05/Jun/2025 18:56:05] "[31m[1mPOST /api/tasks HTTP/1.1[0m" 400 -
+2025-06-05 18:56:09,561 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks/999
+2025-06-05 18:56:09,562 - INFO - 127.0.0.1 - - [05/Jun/2025 18:56:09] "[33mDELETE /api/tasks/999 HTTP/1.1[0m" 404 -
+2025-06-05 18:56:13,629 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/error500
+2025-06-05 18:56:13,629 - INFO - 127.0.0.1 - - [05/Jun/2025 18:56:13] "[33mGET /error500 HTTP/1.1[0m" 404 -
+2025-06-06 12:55:15,108 - INFO - Verificando servidores al inicio...
+2025-06-06 12:55:19,154 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-06 12:55:19,154 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-06 12:55:19,186 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.69:8080
+2025-06-06 12:55:19,187 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 12:55:31,231 - INFO - 127.0.0.1 - - [06/Jun/2025 12:55:31] "[33mPUT /api/tasks/999/complete HTTP/1.1[0m" 404 -
+2025-06-06 12:55:35,361 - INFO - 127.0.0.1 - - [06/Jun/2025 12:55:35] "[31m[1mPOST /api/tasks HTTP/1.1[0m" 400 -
+2025-06-06 12:55:39,446 - INFO - 127.0.0.1 - - [06/Jun/2025 12:55:39] "[35m[1mPOST /api/tasks/simulate-error HTTP/1.1[0m" 500 -
+2025-06-06 12:55:44,584 - INFO - 127.0.0.1 - - [06/Jun/2025 12:55:44] "GET /errors/stats HTTP/1.1" 200 -
+2025-06-06 13:07:26,546 - INFO - Verificando servidores al inicio...
+2025-06-06 13:07:30,619 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-06 13:07:30,619 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-06 13:07:30,655 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.69:8080
+2025-06-06 13:07:30,656 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 13:07:43,033 - INFO - 127.0.0.1 - - [06/Jun/2025 13:07:43] "GET / HTTP/1.1" 200 -
+2025-06-06 13:07:43,141 - INFO - 127.0.0.1 - - [06/Jun/2025 13:07:43] "GET /static/style.css HTTP/1.1" 200 -
+2025-06-06 13:07:45,241 - INFO - 127.0.0.1 - - [06/Jun/2025 13:07:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-06 13:07:50,356 - INFO - 127.0.0.1 - - [06/Jun/2025 13:07:50] "GET /errors/stats HTTP/1.1" 200 -
+2025-06-06 13:08:34,034 - INFO - Verificando servidores al inicio...
+2025-06-06 13:08:38,096 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-06 13:08:38,097 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-06 13:08:38,128 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.69:8080
+2025-06-06 13:08:38,129 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 13:11:06,518 - INFO - Verificando servidores al inicio...
+2025-06-06 13:11:08,542 - INFO - [OK] Servidor http://localhost:5001 activo
+2025-06-06 13:11:10,567 - INFO - [OK] Servidor http://localhost:5002 activo
+2025-06-06 13:11:10,568 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-06 13:11:10,569 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-06 13:11:10,599 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.69:8080
+2025-06-06 13:11:10,599 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 13:11:41,693 - WARNING - Error en health check para http://localhost:5001: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B702959A0>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:11:41,694 - WARNING - [DOWN] Health check: Servidor http://localhost:5001 detectado como caído
+2025-06-06 13:11:45,709 - WARNING - Error en health check para http://localhost:5002: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B703699A0>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:11:45,710 - WARNING - [DOWN] Health check: Servidor http://localhost:5002 detectado como caído
+2025-06-06 13:11:54,729 - WARNING - Error en health check para http://localhost:5001: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B7036A270>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:11:58,746 - WARNING - Error en health check para http://localhost:5002: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B7015D790>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:12:06,092 - INFO - [RECOVERED] Health check: Servidor http://localhost:5001 recuperado y vuelve a estar activo
+2025-06-06 13:12:10,101 - WARNING - Error en health check para http://localhost:5002: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B70369CD0>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:12:21,153 - WARNING - Error en health check para http://localhost:5002: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /health (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000016B703690D0>, 'Connection to localhost timed out. (connect timeout=2)'))
+2025-06-06 13:12:30,198 - INFO - [RECOVERED] Health check: Servidor http://localhost:5002 recuperado y vuelve a estar activo
+2025-06-06 13:12:35,955 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/
+2025-06-06 13:12:35,956 - INFO - 127.0.0.1 - - [06/Jun/2025 13:12:35] "GET / HTTP/1.1" 200 -
+2025-06-06 13:12:36,070 - INFO - 127.0.0.1 - - [06/Jun/2025 13:12:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-06-06 13:13:02,584 - INFO - Verificando servidores al inicio...
+2025-06-06 13:13:04,599 - INFO - [OK] Servidor http://localhost:5001 activo
+2025-06-06 13:13:06,632 - INFO - [OK] Servidor http://localhost:5002 activo
+2025-06-06 13:13:06,633 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-06 13:13:06,635 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-06 13:13:06,665 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.69:8080
+2025-06-06 13:13:06,665 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 13:13:18,803 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks/999/complete
+2025-06-06 13:13:18,804 - INFO - 127.0.0.1 - - [06/Jun/2025 13:13:18] "[33mPUT /api/tasks/999/complete HTTP/1.1[0m" 404 -
+2025-06-06 13:13:22,863 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/api/tasks
+2025-06-06 13:13:22,864 - INFO - 127.0.0.1 - - [06/Jun/2025 13:13:22] "[31m[1mPOST /api/tasks HTTP/1.1[0m" 400 -
+2025-06-06 13:13:26,981 - INFO - [OK] Solicitud exitosa a: http://localhost:5002/api/tasks/simulate-error
+2025-06-06 13:13:26,981 - INFO - 127.0.0.1 - - [06/Jun/2025 13:13:26] "[35m[1mPOST /api/tasks/simulate-error HTTP/1.1[0m" 500 -
+2025-06-06 13:13:32,114 - INFO - [OK] Solicitud exitosa a: http://localhost:5001/errors/stats
